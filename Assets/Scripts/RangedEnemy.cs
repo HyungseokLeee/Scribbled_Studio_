@@ -31,7 +31,7 @@ public class RangedEnemy : MonoBehaviour
         if (lives < 1)
         {
             Destroy(this.gameObject);
-            gC.Score += 100;
+            gC.scoreUp(100);
         }
         CheckIfTimeToFire();
     }

@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using UnityEngine.SocialPlatforms.Impl;
+using UnityEngine.Rendering;
+using System.Runtime.CompilerServices;
 
 public class GameController : MonoBehaviour
 {
@@ -15,6 +17,7 @@ public class GameController : MonoBehaviour
     public Text livesLabel;
     private int _score;
     private int _lives;
+    private int _firerateLev;
     private int startingLives;
     [Header("Game Setting")]
     public Storage storage;
@@ -28,13 +31,14 @@ public class GameController : MonoBehaviour
         set
         {
             _score = value;
-            //storage.GetComponent<Storage>().score = _score;
+            storage.score = _score;
             scoreLabel.text = "Score : " + _score.ToString();
             if (storage.highscore < _score && SceneManager.GetActiveScene().name != "Tutorial")
             {
                 storage.highscore = _score;
             }
             scoreLabel.text = "Score : " + storage.score.ToString();
+            HighscoreLabel.text = "High Score: " + storage.highscore;
         }
     }
     public int Lives
@@ -50,10 +54,21 @@ public class GameController : MonoBehaviour
             livesLabel.text = "Lives: " + _lives.ToString();
         }
     }
+    public int FirerateLev
+    {
+        get
+        {
+            return _firerateLev;
+        }
+        set
+        {
+            _firerateLev = value;
+            storage.fireRateLev = _firerateLev;
+        }
+    }
     // Start is called before the first frame update
     void Start()
     {
-        HighscoreLabel.text = "High Score: " + storage.highscore;
         startingLives = 3;
         switch (SceneManager.GetActiveScene().name)
         {
@@ -61,24 +76,36 @@ public class GameController : MonoBehaviour
                 Debug.Log("Start scene!");
                 StartButton.SetActive(true);
                 ExitButton.SetActive(true);
-                titleLabel.enabled = true;
-                scoreLabel.enabled = false;
-                HighscoreLabel.enabled = false;
-                livesLabel.enabled = false;
+                titleLabel.gameObject.SetActive(true);
+                scoreLabel.gameObject.SetActive(false);
+                HighscoreLabel.gameObject.SetActive(false);
+                livesLabel.gameObject.SetActive(false);
                 break;
             case ("Level1Scene"):
                 StartButton.SetActive(false);
                 ExitButton.SetActive(false);
-                titleLabel.enabled = false;
-                scoreLabel.enabled = true;
-                HighscoreLabel.enabled = true;
-                livesLabel.enabled = true;
+                titleLabel.gameObject.SetActive(false);
+                scoreLabel.gameObject.SetActive(true);
+                HighscoreLabel.gameObject.SetActive(true);
+                livesLabel.gameObject.SetActive(true);
 
                 Debug.Log("Level1 scene!");
-                Score = 0;
+                Score = storage.score;
                 Lives = startingLives;
                 break;
-                
+            case ("Test_Scene"):
+                StartButton.SetActive(false);
+                ExitButton.SetActive(false);
+                titleLabel.gameObject.SetActive(false);
+                scoreLabel.gameObject.SetActive(true);
+                HighscoreLabel.gameObject.SetActive(true);
+                livesLabel.gameObject.SetActive(true);
+
+                Debug.Log("Test scene!");
+                Score = storage.score;
+                Lives = startingLives;
+                break;
+
         }
     }
 
@@ -91,14 +118,21 @@ public class GameController : MonoBehaviour
     {
         SceneManager.LoadScene("Level1Scene");
         Debug.Log("Scene is changed to Level 1!");
+        storage.lives = startingLives;
+        storage.score = 0;
     }
     public void OnExitButtonClick()
     {
         Debug.Log("Game is terminated!");
         Application.Quit();
     }
-    public void scoreUp()
+    public void scoreUp(int score)
     {
-
+        Score += score;
+        Debug.Log(Score);
+    }
+    public void addFirerateLev(int num)
+    {
+        FirerateLev += 1;
     }
 }

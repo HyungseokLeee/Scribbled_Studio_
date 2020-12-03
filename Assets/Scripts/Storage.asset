@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ead4c92087b9934a93d58c23fe9cc6c, type: 3}
   m_Name: Storage
   m_EditorClassIdentifier: 
-  lives: 0
-  score: 0
-  highscore: 0
+  lives: 3
+  score: 9000
+  highscore: 9000
+  fireRateLev: 2
