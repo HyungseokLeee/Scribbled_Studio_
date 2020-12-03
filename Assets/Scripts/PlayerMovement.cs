@@ -30,6 +30,9 @@ public class PlayerMovement : MonoBehaviour
         GameObject gCO = GameObject.FindWithTag("GameController");
         gC = gCO.GetComponent<GameController>();
         rBody = GetComponent<Rigidbody2D>();
+
+        Debug.Log($"Current firerateLev:{gC.FirerateLev}");
+
     }
 
     void Update()
@@ -122,5 +125,22 @@ public class PlayerMovement : MonoBehaviour
         {
             transform.Rotate(-Vector3.forward * rotateSpeed * Time.deltaTime);
         }
+    }
+    public void reduceFirerate()
+    {
+        float originalRate = fireRate;
+        if(gC.FirerateLev == 0)
+        {
+            gC.addFirerateLev(1);
+            fireRate = originalRate * 0.75f;
+        }
+        else if (gC.FirerateLev == 1)
+        {
+            gC.addFirerateLev(1);
+            fireRate = originalRate * 0.5f;
+        }
+        Debug.Log($"Originalfirerate:{originalRate}");
+        Debug.Log($"\nFireratelev : {gC.FirerateLev} \nFireRate:{fireRate}");
+
     }
 }

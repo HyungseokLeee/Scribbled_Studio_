@@ -28,6 +28,7 @@ public class EnemyMovement : MonoBehaviour
         {
             Destroy(this.gameObject);
             gC.Score += 100;
+            gC.scoreUp(100);
         }
     }
 

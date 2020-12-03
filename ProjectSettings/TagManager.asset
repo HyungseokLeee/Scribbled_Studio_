@@ -8,6 +8,11 @@ TagManager:
   - Treasure
   - Enemy
   - Bullet
+  - RangedEnemy
+  - EnemyBullet
+  - Power_Up
+  - Firerate_Reducer
+  - Speed_Up
   layers:
   - Default
   - TransparentFX
