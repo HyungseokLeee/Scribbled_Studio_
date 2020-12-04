@@ -15,10 +15,11 @@ public class GameController : MonoBehaviour
     public Text scoreLabel;
     public Text HighscoreLabel;
     public Text livesLabel;
-    private int _score;
-    private int _lives;
-    private int _firerateLev;
-    private int startingLives;
+    public int _score;
+    public int _lives;
+    public int _firerateLev;
+    public int startingLives;
+    public bool key;
     [Header("Game Setting")]
     public Storage storage;
     public int Score

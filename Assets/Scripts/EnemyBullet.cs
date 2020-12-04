@@ -11,9 +11,12 @@ public class EnemyBullet : MonoBehaviour
     public Transform target;
 
     private Vector2 moveDirection;
+    private GameController gC;
     // Start is called before the first frame update
     void Start()
     {
+        GameObject gCO = GameObject.FindWithTag("GameController");
+        gC = gCO.GetComponent<GameController>();
         rb = GetComponent<Rigidbody2D>();
         target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
         moveDirection = (target.transform.position - transform.position).normalized * moveSpeed;
@@ -31,6 +34,7 @@ public class EnemyBullet : MonoBehaviour
     {
         if (col.gameObject.tag.Equals("Player"))
         {
+            gC.Lives -= 1;
             Debug.Log("Hit");
             Destroy(gameObject);
         }

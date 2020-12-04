@@ -40,5 +40,11 @@ public class EnemyMovement : MonoBehaviour
             Debug.Log("SE");
             Destroy(other.gameObject);
         }
+        if (other.gameObject.tag == "Player")
+        {
+            gC.Lives -= 1;
+            Debug.Log("SE");
+            Destroy(other.gameObject);
+        }
     }
 }
