@@ -27581,6 +27581,7 @@ GameObject:
   - component: {fileID: 683957229}
   - component: {fileID: 683957231}
   - component: {fileID: 683957230}
+  - component: {fileID: 683957232}
   m_Layer: 0
   m_Name: DoorTrigger
   m_TagString: Untagged
@@ -27615,6 +27616,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneName: Level2Scene
+  player: {fileID: 300385941}
 --- !u!61 &683957231
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -27641,6 +27643,27 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2, y: 2}
   m_EdgeRadius: 0
+--- !u!50 &683957232
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 683957228}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1001 &685760274
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -73539,6 +73562,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneName: Level2Scene
+  player: {fileID: 0}
 --- !u!1 &1920057670
 GameObject:
   m_ObjectHideFlags: 0
