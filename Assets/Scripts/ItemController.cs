@@ -6,6 +6,7 @@ public class ItemController : MonoBehaviour
 {
     private GameController gC;
     private PlayerMovement player;
+    private AudioSource gem;
     // Start is called before the first frame update
     void Start()
     {
@@ -13,6 +14,7 @@ public class ItemController : MonoBehaviour
         gC = gCO.GetComponent<GameController>();
         GameObject pO = GameObject.FindWithTag("Player");
         player = pO.GetComponent<PlayerMovement>();
+        gem = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -24,8 +26,9 @@ public class ItemController : MonoBehaviour
     {
         if(col.gameObject.tag == "Player" && this.gameObject.tag == "Treasure")
         {
+            gem.Play();
             Debug.Log("Getting Treasure!");
-            Destroy(this.gameObject);
+            Destroy(this.gameObject, 1);
             gC.Score += 100;
         }
         if (col.gameObject.tag == "Player" && this.gameObject.tag == "Power_Up")
