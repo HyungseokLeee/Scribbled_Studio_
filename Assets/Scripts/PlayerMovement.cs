@@ -103,7 +103,7 @@ public class PlayerMovement : MonoBehaviour
     }
     void FixedUpdate()
     {
-        if (canMove == true)
+        if (canMove)
         {
             // Read input
             horiz = Input.GetAxis("Horizontal");

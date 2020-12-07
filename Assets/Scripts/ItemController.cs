@@ -31,11 +31,6 @@ public class ItemController : MonoBehaviour
             Destroy(this.gameObject, 1);
             gC.Score += 100;
         }
-        if (col.gameObject.tag == "Player" && this.gameObject.tag == "Power_Up")
-        {
-            Debug.Log("Getting Power_Up!");
-            Destroy(this.gameObject);
-        }
         if (col.gameObject.tag == "Player" && this.gameObject.tag == "Firerate_Reducer")
         {
             Debug.Log("Getting firerate_reducer!");
@@ -48,6 +43,11 @@ public class ItemController : MonoBehaviour
             {
                 gC.scoreUp(200);
             }
+        }
+        if(col.gameObject.tag == "Player" && this.gameObject.tag == "HP_UP")
+        {
+            Debug.Log("Getting HP_UP");
+            Destroy(this.gameObject);
         }
     }
 }
