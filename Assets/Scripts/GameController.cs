@@ -20,6 +20,7 @@ public class GameController : MonoBehaviour
     public int _firerateLev;
     public int startingLives;
     public bool key;
+    public AudioSource audioSource;
     [Header("Game Setting")]
     public Storage storage;
     public int Score
@@ -93,7 +94,9 @@ public class GameController : MonoBehaviour
                 Debug.Log("Level1 scene!");
                 Score = storage.score;
                 Lives = startingLives;
+                audioSource = GetComponent<AudioSource>();
                 break;
+                
             case ("Test_Scene"):
                 StartButton.SetActive(false);
                 ExitButton.SetActive(false);
@@ -106,7 +109,6 @@ public class GameController : MonoBehaviour
                 Score = storage.score;
                 Lives = startingLives;
                 break;
-
         }
     }
 
@@ -117,8 +119,14 @@ public class GameController : MonoBehaviour
         {
 
         }
-        
     }
+
+    public void PlayAudio(AudioClip sound)
+    {
+	    audioSource.clip = sound;
+	    audioSource.Play();
+    }
+
     public void OnStartButtonClick()
     {
         SceneManager.LoadScene("Level1Scene");
