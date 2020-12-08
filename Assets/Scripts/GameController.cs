@@ -116,7 +116,33 @@ public class GameController : MonoBehaviour
                 Lives = startingLives;
                 audioSource = GetComponent<AudioSource>();
                 break;
-                
+            case ("Level2Scene"):
+                StartButton.SetActive(false);
+                ExitButton.SetActive(false);
+                titleLabel.gameObject.SetActive(false);
+                scoreLabel.gameObject.SetActive(true);
+                HighscoreLabel.gameObject.SetActive(true);
+                livesLabel.gameObject.SetActive(true);
+
+                Debug.Log("Level1 scene!");
+                Score = storage.score;
+                Lives = storage.lives;
+                audioSource = GetComponent<AudioSource>();
+                break;
+            case ("Level3Scene"):
+                StartButton.SetActive(false);
+                ExitButton.SetActive(false);
+                titleLabel.gameObject.SetActive(false);
+                scoreLabel.gameObject.SetActive(true);
+                HighscoreLabel.gameObject.SetActive(true);
+                livesLabel.gameObject.SetActive(true);
+
+                Debug.Log("Level1 scene!");
+                Score = storage.score;
+                Lives = storage.lives;
+                audioSource = GetComponent<AudioSource>();
+                break;
+
             case ("Test_Scene"):
                 StartButton.SetActive(false);
                 ExitButton.SetActive(false);
