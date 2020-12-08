@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
@@ -24,12 +25,17 @@ public class PlayerMovement : MonoBehaviour
     private float timer = 0.0f;
     private float myTime = 0.0f;
 
+    GameObject hpO;
+    HpBarController hpBarController;
+
     // Start is called before the first frame update
     void Start()
     {
         GameObject gCO = GameObject.FindWithTag("GameController");
         gC = gCO.GetComponent<GameController>();
         rBody = GetComponent<Rigidbody2D>();
+        hpO = GameObject.FindWithTag("HpStatus");
+        hpBarController = hpO.GetComponent<HpBarController>();
 
         Debug.Log($"Current firerateLev:{gC.FirerateLev}");
 
@@ -103,7 +109,7 @@ public class PlayerMovement : MonoBehaviour
     }
     void FixedUpdate()
     {
-        if (canMove == true)
+        if (canMove)
         {
             // Read input
             horiz = Input.GetAxis("Horizontal");
@@ -142,5 +148,43 @@ public class PlayerMovement : MonoBehaviour
         Debug.Log($"Originalfirerate:{originalRate}");
         Debug.Log($"\nFireratelev : {gC.FirerateLev} \nFireRate:{fireRate}");
 
+    }
+    private void takeDamage()
+    {
+        gC.HP -= 20;
+        hpBarController.SetDamage(20.0f);
+        Debug.Log("Hit");
+        if(gC.HP <= 0)
+        {
+            decreaseLife();
+        }
+    }
+    private void decreaseLife()
+    {
+        if(gC.Lives > 0)
+        {
+            gC.Lives -= 1;
+            gC.HP = 100;
+            hpBarController.health = 100;
+        }
+        else
+        {
+            gC.GameOver();
+        }
+    }
+    private void OnTriggerEnter2D(Collider2D col)
+    {
+        if (col.gameObject.tag.Equals("EnemyBullet"))
+        {
+            Destroy(col.gameObject);
+            takeDamage();
+        }
+    }
+    private void OnCollisionEnter2D(Collision2D col)
+    {
+        if (col.gameObject.tag.Equals("Enemy"))
+        {
+            takeDamage();
+        }
     }
 }

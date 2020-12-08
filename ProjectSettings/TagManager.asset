@@ -13,6 +13,8 @@ TagManager:
   - Power_Up
   - Firerate_Reducer
   - Speed_Up
+  - HpStatus
+  - HP_UP
   layers:
   - Default
   - TransparentFX
