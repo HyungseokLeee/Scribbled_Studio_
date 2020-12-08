@@ -11,6 +11,7 @@ public class GameController : MonoBehaviour
 {   
     public GameObject StartButton;
     public GameObject ExitButton;
+    public GameObject RetryButton;
     public Text titleLabel;
     public Text scoreLabel;
     public Text HighscoreLabel;
@@ -55,7 +56,6 @@ public class GameController : MonoBehaviour
         set
         {
             _HP = value;
-            storage.hp = _HP;
             //hpLabel.text = "HP: " + _HP.ToString();
         }
     }
@@ -129,6 +129,18 @@ public class GameController : MonoBehaviour
                 Score = storage.score;
                 Lives = startingLives;
                 break;
+            case ("GameOver_Scene"):
+                Score = storage.score;
+                Lives = storage.lives;
+                hpBarController.health = 0.0f;
+                StartButton.SetActive(false);
+                RetryButton.SetActive(true);
+                ExitButton.SetActive(true);
+                titleLabel.gameObject.SetActive(false);
+                scoreLabel.gameObject.SetActive(true);
+                HighscoreLabel.gameObject.SetActive(true);
+                livesLabel.gameObject.SetActive(true);
+                break;
         }
     }
 
@@ -156,8 +168,7 @@ public class GameController : MonoBehaviour
     {
         SceneManager.LoadScene("Level1Scene");
         Debug.Log("Scene is changed to Level 1!");
-        storage.lives = startingLives;
-        storage.score = 0;
+        resetStorage();
     }
     public void OnExitButtonClick()
     {
@@ -172,5 +183,16 @@ public class GameController : MonoBehaviour
     public void addFirerateLev(int num)
     {
         FirerateLev += 1;
+    }
+    public void resetStorage()
+    {
+        storage.score = 0;
+        storage.lives = startingLives;
+        storage.fireRateLev = 0;
+        
+    }
+    public void GameOver()
+    {
+        SceneManager.LoadScene("GameOver_Scene");
     }
 }

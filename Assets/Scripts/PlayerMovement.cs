@@ -169,7 +169,7 @@ public class PlayerMovement : MonoBehaviour
         }
         else
         {
-            //dead
+            gC.GameOver();
         }
     }
     private void OnTriggerEnter2D(Collider2D col)
