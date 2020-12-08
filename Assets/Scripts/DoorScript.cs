@@ -24,9 +24,9 @@ public class DoorScript : MonoBehaviour
 	{
 		if (col.tag == player.tag & gC.key == true)
         {
+            SceneManager.LoadScene(sceneName);
             gC.key = false;
-			SceneManager.LoadScene(sceneName);
-		}
+        }
 	}
 
 }

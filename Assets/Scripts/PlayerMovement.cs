@@ -24,6 +24,7 @@ public class PlayerMovement : MonoBehaviour
 
     private float timer = 0.0f;
     private float myTime = 0.0f;
+    public AudioSource hurt;
 
     GameObject hpO;
     HpBarController hpBarController;
@@ -178,6 +179,7 @@ public class PlayerMovement : MonoBehaviour
         {
             Destroy(col.gameObject);
             takeDamage();
+            hurt.Play();
         }
     }
     private void OnCollisionEnter2D(Collision2D col)
@@ -185,6 +187,7 @@ public class PlayerMovement : MonoBehaviour
         if (col.gameObject.tag.Equals("Enemy"))
         {
             takeDamage();
+            hurt.Play();
         }
     }
 }
