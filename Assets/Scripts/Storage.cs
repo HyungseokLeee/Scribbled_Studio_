@@ -6,6 +6,7 @@ using UnityEngine;
 public class Storage : ScriptableObject
 {
     public int lives;
+    public int hp;
     public int score;
     public int highscore;
     public int fireRateLev;

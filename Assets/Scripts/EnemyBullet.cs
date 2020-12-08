@@ -32,12 +32,6 @@ public class EnemyBullet : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D col)
     {
-        if (col.gameObject.tag.Equals("Player"))
-        {
-            gC.Lives -= 1;
-            Debug.Log("Hit");
-            Destroy(gameObject);
-        }
         if (col.gameObject.tag.Equals("Wall"))
         {
             Destroy(gameObject);

@@ -8,7 +8,7 @@ using UnityEngine.Rendering;
 using System.Runtime.CompilerServices;
 
 public class GameController : MonoBehaviour
-{
+{   
     public GameObject StartButton;
     public GameObject ExitButton;
     public Text titleLabel;
@@ -17,12 +17,14 @@ public class GameController : MonoBehaviour
     public Text livesLabel;
     public int _score;
     public int _lives;
+    private int _HP;
     public int _firerateLev;
     public int startingLives;
     public bool key;
     public AudioSource audioSource;
     [Header("Game Setting")]
     public Storage storage;
+    private HpBarController hpBarController;
     public int Score
     {
         get
@@ -41,6 +43,20 @@ public class GameController : MonoBehaviour
             }
             scoreLabel.text = "Score : " + storage.score.ToString();
             HighscoreLabel.text = "High Score: " + storage.highscore;
+        }
+    }
+    public int HP
+    {
+
+        get
+        {
+            return _HP;
+        }
+        set
+        {
+            _HP = value;
+            storage.hp = _HP;
+            //hpLabel.text = "HP: " + _HP.ToString();
         }
     }
     public int Lives
@@ -71,6 +87,10 @@ public class GameController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        HP = 100;
+        GameObject hpO = GameObject.FindWithTag("HpStatus");
+        hpBarController = hpO.GetComponent<HpBarController>();
+        
         startingLives = 3;
         switch (SceneManager.GetActiveScene().name)
         {
@@ -118,6 +138,11 @@ public class GameController : MonoBehaviour
         if (Lives < 0)
         {
 
+        }
+        //Test//
+        if(Input.GetKeyDown(KeyCode.T))
+        {
+            hpBarController.SetDamage(20.0f);
         }
     }
 
