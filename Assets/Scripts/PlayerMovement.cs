@@ -130,11 +130,11 @@ public class PlayerMovement : MonoBehaviour
         Rigidbody2D rBody = GetComponent<Rigidbody2D>();
         rBody.velocity = movement * speed;
 
-        if (Input.GetKey("q"))
+        if (Input.GetKey("a"))
         {
             transform.Rotate(Vector3.forward * rotateSpeed * Time.deltaTime);
         }
-        if (Input.GetKey("e"))
+        if (Input.GetKey("d"))
         {
             transform.Rotate(-Vector3.forward * rotateSpeed * Time.deltaTime);
         }
