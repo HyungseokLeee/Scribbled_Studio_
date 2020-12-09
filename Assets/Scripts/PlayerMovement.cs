@@ -110,15 +110,21 @@ public class PlayerMovement : MonoBehaviour
     }
     void FixedUpdate()
     {
-        if (canMove)
-        {
-            // Read input
-            horiz = Input.GetAxis("Horizontal");
-            vert = Input.GetAxis("Vertical");
-        }
-        //Debug.Log("x: " + horiz + ",y: " + vert);
+        //if (canMove)
+        //{
+        //    // Read input
+        //    horiz = Input.GetAxis("Horizontal");
+        //    vert = Input.GetAxis("Vertical");
+        //}
+        ////Debug.Log("x: " + horiz + ",y: " + vert);
 
-        movement = new Vector2(horiz, vert);
+        //movement = new Vector2(horiz, vert);
+        float moveHoriz = Input.GetAxis("Horizontal") * speed * Time.deltaTime;
+        transform.Translate(moveHoriz, 0, 0);
+
+        float moveVert = Input.GetAxis("Vertical") * speed * Time.deltaTime;
+
+        transform.Translate(0, moveVert, 0);
 
         //Move the Player
         Rigidbody2D rBody = GetComponent<Rigidbody2D>();
